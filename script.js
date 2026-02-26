@@ -4,17 +4,55 @@ for(let k in a){if(document.getElementById(k).value.trim()!==a[k]){
 document.getElementById("msg").innerText="အချက်အလက်မှားနေပါတယ် ❌";return;}}
 localStorage.setItem("verified","yes");
 window.location.href="todo.html";}
-if(window.location.pathname.includes("todo.html")){
-if(localStorage.getItem("verified")!=="yes"){window.location.href="index.html";}}
+
+// Redirect if not verified (optional)
+if (window.location.pathname.includes("todo.html")) {
+  if (localStorage.getItem("verified") !== "yes") {
+    window.location.href = "index.html";
+  }
+}
+
+// Add Task
 function addTask(){
-let input=document.getElementById("taskInput");
-if(!input.value)return;
-let li=document.createElement("li");
-li.innerHTML=`<span onclick="toggle(this)">${input.value}</span><button onclick="removeTask(this)">X</button>`;
-document.getElementById("list").appendChild(li);
-save();input.value="";}
-function toggle(el){el.classList.toggle("done");save();}
-function removeTask(btn){btn.parentElement.remove();save();}
-function save(){localStorage.setItem("tasks",document.getElementById("list").innerHTML);}
-window.onload=()=>{if(localStorage.getItem("tasks")){
-document.getElementById("list").innerHTML=localStorage.getItem("tasks");}};
+  const input = document.getElementById("taskInput");
+  if(!input.value) return;
+
+  const li = document.createElement("li");
+  li.innerHTML = `<span onclick="toggleDone(this)">${input.value}</span>
+                  <button onclick="removeTask(this)">X</button>`;
+  document.getElementById("list").appendChild(li);
+  saveTasks();
+  input.value="";
+}
+
+// Toggle Done
+function toggleDone(el){
+  el.classList.toggle("done");
+  saveTasks();
+}
+
+// Remove Task
+function removeTask(btn){
+  btn.parentElement.remove();
+  saveTasks();
+}
+
+// Clear All Tasks
+function clearAll(){
+  if(confirm("လုံးဝ ဖျက်မလား?")) {
+    document.getElementById("list").innerHTML="";
+    saveTasks();
+  }
+}
+
+// Save to localStorage
+function saveTasks(){
+  localStorage.setItem("tasks", document.getElementById("list").innerHTML);
+}
+
+// Load tasks on page load
+window.onload = () => {
+  if(localStorage.getItem("tasks")){
+    document.getElementById("list").innerHTML = localStorage.getItem("tasks");
+  }
+};
