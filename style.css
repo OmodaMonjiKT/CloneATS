@@ -31,13 +31,13 @@ h1 {
 
 /* Input row */
 .input-row {
-  display: flex;
+  display: block;
   gap: 10px;
   margin-bottom: 15px;
 }
 
 .input-row input {
-  flex:1;
+  
   padding: 10px 15px;
   border-radius: 8px;
   border:1px solid #ccc;
