@@ -1,9 +1,25 @@
-function verify(){
-const a={gf_f:"ဦးအောင်မောင်း",gm_f:"ဒေါ်ချစ်စု",gf_m:"ဦးခင်ဖေဝင်း",gm_m:"ဒေါ်မိပွေး",father:"ဦးထိန်လင်း",mother:"ဒေါ်ဝင်းဝင်းစု"};
-for(let k in a){if(document.getElementById(k).value.trim()!==a[k]){
-document.getElementById("msg").innerText="အချက်အလက်မှားနေပါတယ် ❌";return;}}
-localStorage.setItem("verified","yes");
-window.location.href="todo.html";}
+function verify() {
+  const answers = {
+    gf_f: "ဦးအောင်မောင်း",
+    gm_f: "ဒေါ်ချစ်စု",
+    gf_m: "ဦးခင်ဖေဝင်း",
+    gm_m: "ဒေါ်မိပွေး",
+    father: "ဦးထိန်လင်း",
+    mother: "ဒေါ်ဝင်းဝင်းစု"
+  };
+
+  for (let id in answers) {
+    const val = document.getElementById(id).value.trim();
+    if (val !== answers[id]) {
+      document.getElementById("msg").innerText =
+        "Verification failed. Please check your information.";
+      return;
+    }
+  }
+
+  localStorage.setItem("verified", "yes");
+  window.location.href = "todo.html";
+}
 
 // Redirect if not verified (optional)
 if (window.location.pathname.includes("todo.html")) {
