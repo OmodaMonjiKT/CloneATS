@@ -3,23 +3,57 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Premium To-Do List</title>
+<title>FOR FAMILY ONLY</title>
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-<div class="container">
-    <h1> My Premium To-Do List</h1>
-    <div class="todo-card">
-        <div class="input-row">
-            <input id="taskInput" placeholder="လုပ်စရာရေးပါ..." />
-            <button onclick="addTask()">Add</button>
-        </div>
-        <ul id="list"></ul>
-        <div class="actions">
-            <button onclick="clearAll()">Clear All</button>
-        </div>
-    </div>
+<div class="layout">
+
+  <!-- Sidebar -->
+  <aside class="sidebar">
+    <h2>FOR FAMILY ONLY</h2>
+    <nav>
+      <a onclick="showSection('todo')" class="active">ToDo</a>
+      <a onclick="showSection('contacts')">Contacts</a>
+      <a onclick="showSection('about')">About</a>
+    </nav>
+  </aside>
+
+  <!-- Main -->
+  <main class="content">
+
+    <!-- ToDo -->
+    <section id="todo" class="section">
+      <h3>Family To-Do List</h3>
+
+      <div class="todo-input">
+        <input id="taskInput" placeholder="လုပ်စရာရေးပါ..." />
+        <button onclick="addTask()">Add</button>
+      </div>
+
+      <ul id="list"></ul>
+    </section>
+
+    <!-- Contacts -->
+    <section id="contacts" class="section hidden">
+      <h3>Contacts</h3>
+      <p>📧 aungsan246812@gmail.com</p>
+      <p>📧 thethtaroo19112006@gmail.com</p>
+      <p>
+        🔗 <a href="https://www.facebook.com/aung.thet.san.964088" target="_blank">
+        Facebook Profile
+        </a>
+      </p>
+    </section>
+
+    <!-- About -->
+    <section id="about" class="section hidden">
+      <h3>About</h3>
+      <p>ဒီ page ကို လုပ်ရခြင်းရဲ့ ရည်ရွယ်ချက်ကို နားလည်ပါစေ</p>
+    </section>
+
+  </main>
 </div>
 
 <script src="script.js"></script>
