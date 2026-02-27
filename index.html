@@ -1,22 +1,46 @@
 <!DOCTYPE html>
-<html lang="my">
+<html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Verification</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Clone ATS | Secure Access</title>
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
-<div class="box">
-<h2>အတည်ပြုရန်</h2>
-<input id="gf_f" placeholder="Grandfather (Father)">
-<input id="gm_f" placeholder="Grandmother (Father)">
-<input id="gf_m" placeholder="Grandfather (Mother)">
-<input id="gm_m" placeholder="Grandmother (Mother)">
-<input id="father" placeholder="Father">
-<input id="mother" placeholder="Mother">
-<button onclick="verify()">Verify</button>
-<p id="msg"></p>
+
+<div class="ats-container">
+  <div class="ats-card">
+    <h1>Clone ATS</h1>
+    <p class="subtitle">Secure Identity Verification</p>
+
+    <div class="field">
+      <input id="gf_f" placeholder="Grandfather (Father side)">
+    </div>
+    <div class="field">
+      <input id="gm_f" placeholder="Grandmother (Father side)">
+    </div>
+    <div class="field">
+      <input id="gf_m" placeholder="Grandfather (Mother side)">
+    </div>
+    <div class="field">
+      <input id="gm_m" placeholder="Grandmother (Mother side)">
+    </div>
+    <div class="field">
+      <input id="father" placeholder="Father">
+    </div>
+    <div class="field">
+      <input id="mother" placeholder="Mother">
+    </div>
+
+    <button class="verify-btn" onclick="verify()">Verify Access</button>
+    <p id="msg" class="error"></p>
+
+    <div class="footer">
+      © 2026 Clone ATS · Secure System
+    </div>
+  </div>
 </div>
+
 <script src="script.js"></script>
 </body>
 </html>
