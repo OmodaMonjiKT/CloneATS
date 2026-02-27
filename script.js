@@ -22,53 +22,48 @@ function verify() {
 }
 
 // Redirect if not verified (optional)
-if (window.location.pathname.includes("todo.html")) {
-  if (localStorage.getItem("verified") !== "yes") {
-    window.location.href = "index.html";
-  }
+// Security check
+if (localStorage.getItem("verified") !== "yes") {
+  window.location.href = "index.html";
 }
 
-// Add Task
+/* Navigation */
+function showSection(id){
+  document.querySelectorAll(".section").forEach(s=>s.classList.add("hidden"));
+  document.getElementById(id).classList.remove("hidden");
+
+  document.querySelectorAll(".sidebar nav a")
+    .forEach(a=>a.classList.remove("active"));
+  event.target.classList.add("active");
+}
+
+/* ToDo Logic */
 function addTask(){
-  const input = document.getElementById("taskInput");
+  const input=document.getElementById("taskInput");
   if(!input.value) return;
 
-  const li = document.createElement("li");
-  li.innerHTML = `<span onclick="toggleDone(this)">${input.value}</span>
-                  <button onclick="removeTask(this)">X</button>`;
+  const li=document.createElement("li");
+  li.innerHTML=`
+    <input value="${input.value}" />
+    <button onclick="toggleDone(this)">Done</button>
+  `;
   document.getElementById("list").appendChild(li);
-  saveTasks();
+  save();
   input.value="";
 }
 
-// Toggle Done
-function toggleDone(el){
-  el.classList.toggle("done");
-  saveTasks();
+function toggleDone(btn){
+  const input=btn.parentElement.querySelector("input");
+  input.classList.toggle("done");
+  save();
 }
 
-// Remove Task
-function removeTask(btn){
-  btn.parentElement.remove();
-  saveTasks();
+function save(){
+  localStorage.setItem("tasks",
+    document.getElementById("list").innerHTML);
 }
 
-// Clear All Tasks
-function clearAll(){
-  if(confirm("လုံးဝ ဖျက်မလား?")) {
-    document.getElementById("list").innerHTML="";
-    saveTasks();
-  }
-}
-
-// Save to localStorage
-function saveTasks(){
-  localStorage.setItem("tasks", document.getElementById("list").innerHTML);
-}
-
-// Load tasks on page load
-window.onload = () => {
-  if(localStorage.getItem("tasks")){
-    document.getElementById("list").innerHTML = localStorage.getItem("tasks");
-  }
+window.onload=()=>{
+  const data=localStorage.getItem("tasks");
+  if(data) document.getElementById("list").innerHTML=data;
 };
